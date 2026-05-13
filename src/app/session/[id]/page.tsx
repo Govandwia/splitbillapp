@@ -112,6 +112,19 @@ export default function SessionPage({ params }: { params: Promise<{ id: string }
     }
   };
 
+  const handleEditItem = async (itemId: string, newName: string, newPrice: number, newAmount: number) => {
+    if (!currentUser || currentUser !== bill?.creator) return;
+    
+    if (isNaN(newPrice) || isNaN(newAmount) || newAmount < 1) return;
+
+    const docRef = doc(db, "bills", id);
+    await updateDoc(docRef, {
+      [`items.${itemId}.name`]: newName.trim(),
+      [`items.${itemId}.price`]: newPrice,
+      [`items.${itemId}.amount`]: newAmount,
+    });
+  };
+
   const handleTogglePaid = async (participantName: string, currentStatus: boolean) => {
     if (!currentUser || currentUser !== bill?.creator) return;
 
@@ -315,6 +328,7 @@ export default function SessionPage({ params }: { params: Promise<{ id: string }
                     isCreator={currentUser === bill.creator}
                     onToggleClaim={handleToggleClaim}
                     onDelete={handleDeleteItem}
+                    onEdit={handleEditItem}
                   />
                 ))}
               </div>
