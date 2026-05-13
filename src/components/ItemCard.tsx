@@ -19,7 +19,7 @@ export function ItemCard({ item, currentUser, isCreator, onToggleClaim, onDelete
   const remaining = (item.amount || 1) - totalClaimed;
 
   // Flatten claims to array for display
-  const displayClaims = [];
+  const displayClaims: string[] = [];
   Object.entries(claims).forEach(([name, count]) => {
     for (let i = 0; i < count; i++) {
       displayClaims.push(name);
