@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-retro-bg: #FDF9F1;
+  --color-retro-fg: #1C1C1C;
+  --color-retro-red: #E94F37;
+  --color-retro-blue: #3F88C5;
+  --color-retro-yellow: #F6C23E;
+  --color-retro-green: #44A96C;
+  --color-retro-gray: #E0DCD3;
+}
+
+:root {
+  --background: #FDF9F1;
+  --foreground: #1C1C1C;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+}
+
+/* Neo-Brutalist Utilities */
+@layer utilities {
+  .shadow-retro {
+    box-shadow: 4px 4px 0px 0px rgba(28, 28, 28, 1);
+  }
+  .shadow-retro-hover {
+    box-shadow: 6px 6px 0px 0px rgba(28, 28, 28, 1);
+    transform: translate(-2px, -2px);
+  }
+  .shadow-retro-active {
+    box-shadow: 0px 0px 0px 0px rgba(28, 28, 28, 1);
+    transform: translate(4px, 4px);
+  }
+  .border-retro {
+    border: 3px solid #1C1C1C;
+  }
+}
